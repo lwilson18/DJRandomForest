@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+            <div align="center">
+                <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('view_songs', type='top' ) }}';">View Top Songs</button>
+                <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('view_songs', type='all') }}';">View All Rated Songs</button>
+                <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('train_redirect') }}';">Rate more songs</button>
+            </div>
+            <hr>
+            <div align="center">
+                <img src="{{ url_for('static', filename='audio_profile_{}.png'.format(image_signature)) }}" alt="Audio Profle">
+            </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div align="center">
+            <audio controls>
+                <source src={{ preview_url }} type="audio/mpeg">Your browser does not support the audio element.
+            </audio>
+        </div><div style="line-height:50%;"><br></div>
+            <div align="center">
+                <form action="" method="post">
+                    <button class="btn btn-primary" type="submit" name="rating" value=1>I hate this!</button>
+                    <button class="btn btn-primary" type="submit" name="rating" value=2>This isn't very good</button>
+                    <button class="btn btn-primary" type="submit" name="rating" value=3>Meh</button>
+                    <button class="btn btn-primary" type="submit" name="rating" value=4>This is okay</button>
+                    <button class="btn btn-primary" type="submit" name="rating" value=5>This is pretty good</button>
+                    <button class="btn btn-primary" type="submit" name="rating" value=6>I love this!</button>
+                    {% if iteration>0 %}
+                    <br><br>
+                    <div align="center" class="""slidecontainer">
+                        <p>Select recommendation confidence:</p>
+                        0 <input type="range" min="0" max="2" value={{ confidence }} name="slider" class="slider"> 100
+                    <br>
+                    (Higher confidence yields better recommendations, lower confidence lets you hear something new)
+                    <br>
+                    <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('view_songs', type='top' ) }}';">View Top Songs</button>
+                    <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('view_songs', type='all') }}';">View All Rated Songs</button>
+                    <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('audio_profile') }}';">View Audio Profile</button>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+{% endblock %}

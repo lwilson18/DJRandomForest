@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div align="center">
+            <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('train_redirect') }}';">Rate more songs</button>
+            <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('audio_profile') }}';">View Audio Profile</button>
+        </div><div style="line-height:50%;"><br></div>
+        <hr>
+            <table class="table table-striped table-hover center table-bordered">
+                 <tbody>
+                    {% for index,song in songs.iterrows() %}
+                       <tr>
+                           <td>{{ song['Song'] }}</td>
+                           <td>{{ song['Artist'] }}</td>
+                           <td>{{ song['Album'] }}</td>
+                           <td>
+                                <audio controls><source src={{ song['Preview'] }} type="audio/mpeg">Your browser does not support the audio element.</audio>
+                            </td>
+                       </tr>
+                    {% endfor %}
+                 </tbody>
+              </table>
+{% endblock %}

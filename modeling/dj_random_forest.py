@@ -29,7 +29,7 @@ class DJRandomForest(object):
         self.song_df_h2o = h2o.H2OFrame(self.song_df.drop(['Song','Artist','Album'],axis=1))
         self.X = ['Genre','mode', 'tempo', 'acousticness', 'danceability', 'energy', 
         'instrumentalness','liveness', 'loudness', 'speechiness', 'valence']
-        self.classifier = H2ORandomForestEstimator(ntrees=350,min_rows=3)
+        self.classifier = H2ORandomForestEstimator(ntrees=200,min_rows=3)
 
     def recommend(self, training_df):
         self.training_df = training_df

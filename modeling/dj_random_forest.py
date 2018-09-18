@@ -8,17 +8,17 @@ import matplotlib.pyplot as plt
 from flask import url_for
 
 def bin_response(rating) :
-    if rating >= 4 :
+    if rating > 0 :
         bin_response = "like"
     else :
         bin_response = "dislike"
     return bin_response
 
 def bin_weight(rating) :
-    if rating >= 4 :
-        weight = rating-3
+    if rating > 0 :
+        weight = rating
     else :
-        weight = 4-rating
+        weight = -rating
     return weight
 
 class DJRandomForest(object):
@@ -65,7 +65,7 @@ class DJRandomForest(object):
 
     def audio_profile(self) :
         varimps = pd.DataFrame(self.classifier.varimp())[[0,3]].rename(columns={0:"variable",3:"percent_importance"})
-        liked_songs = self.training_df[self.training_df.rating >= 4] #only consider liked songs when calculating weights
+        liked_songs = self.training_df[self.training_df.rating > 0] #only consider liked songs when calculating weights
         for var in varimps.variable :
             if var != "Genre" :
                 varimps.loc[varimps.variable==var,"weighted_mean"] = np.average(liked_songs[var],weights=liked_songs.weight)

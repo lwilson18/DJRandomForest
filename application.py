@@ -38,8 +38,8 @@ def train_redirect():
 		ratings_query = "select song_id, rating from rating where user_id={}".format(user_id)
 		rated_songs = pd.read_sql(ratings_query, db.engine)
 		# Need at least 1 positive and negative song
-		if (len(rated_songs[rated_songs.rating <= 3]) > 0) and \
-		(len(rated_songs[rated_songs.rating >= 4]) > 0):
+		if (len(rated_songs[rated_songs.rating < 0]) > 0) and \
+		(len(rated_songs[rated_songs.rating > 0]) > 0):
 			rated_song_data = rated_songs.merge(song_df, on='song_id')
 			DJ_RF.recommend(rated_song_data)
 			session['top_songs'] = DJ_RF.top_songs(SONGS_PER_ITERATION)

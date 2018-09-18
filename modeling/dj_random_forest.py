@@ -84,8 +84,7 @@ def visualize_audio_profile(audio_profile,image_signature) :
         plt.xlabel("")
         plt.ylabel('% Importance')
         plt.tight_layout()
-        plt.savefig('app/static/audio_profile_{}.png'.format(image_signature))
-        #plt.savefig(url_for('static')+'/audio_profile_{}.png'.format(image_signature))
+        plt.savefig('static/audio_profile_{}.png'.format(image_signature))
     else :
         audio_profile.plot(colormap=plt.cm.gist_rainbow)
         lgd = plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
@@ -93,5 +92,4 @@ def visualize_audio_profile(audio_profile,image_signature) :
         plt.ylabel("% Importance")
         plt.xlabel("Model Iteration")
         plt.title("Audio Feature % Importance")
-        plt.savefig('app/static/audio_profile_{}.png'.format(image_signature), bbox_extra_artists=(lgd,), bbox_inches='tight')
-        #plt.savefig(url_for('static')+'/audio_profile_{}.png'.format(image_signature),bbox_extra_artists=(lgd,), bbox_inches='tight')
+        plt.savefig('static/audio_profile_{}.png'.format(image_signature), bbox_extra_artists=(lgd,), bbox_inches='tight')

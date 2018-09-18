@@ -78,7 +78,6 @@ def song_pg(song_id):
 		user_id = session.get('user_id',None)
 		confidence = session.get('confidence', None)
 		rating_entry = Rating(user_id=user_id,rating=rating,song_id=song_id,iteration=iteration,confidence=confidence)
-		print(rating_entry)
 		db.session.add(rating_entry)
 		db.session.commit()
 		# go to another song

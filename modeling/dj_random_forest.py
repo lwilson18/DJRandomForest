@@ -31,24 +31,6 @@ class DJRandomForest(object):
         'instrumentalness','liveness', 'loudness', 'speechiness', 'valence']
         self.classifier = H2ORandomForestEstimator(ntrees=350,min_rows=3)
 
-    """def train(self, training_df):
-                    # Calculate binary response
-                    training_df['response'] = training_df.rating.apply(bin_response)
-                    # Calculate training weights
-                    training_df['weight'] = training_df.rating.apply(bin_weight)
-                    self.training_songs = list(training_df.song_id)
-                    # Convert to h2o-frame
-                    training_df_h2o = h2o.H2OFrame(training_df)
-                    self.classifier.train(self.X, "response", training_frame=training_df_h2o, weights_column="weight")
-            
-                def recommend(self):
-                    #test_song_list = list(test_songs.song_id)
-                    self.testing_df = self.song_df.loc[~self.song_df.song_id.isin(self.training_songs)]
-                    test_songs_h2o = self.song_df_h2o[~self.song_df_h2o['song_id'].isin(self.training_songs)]
-                    prediction = self.classifier.predict(test_songs_h2o).as_data_frame().like
-                    self.testing_df['Prediction'] = prediction
-                    self.testing_df = self.testing_df.sort_values('Prediction', ascending=False)"""
-
     def recommend(self, training_df):
         self.training_df = training_df
         # Calculate binary response

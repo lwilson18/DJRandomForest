@@ -8,6 +8,6 @@
             </div>
             <hr>
             <div align="center">
-                <img src="/app/static/{{ 'audio_profile_{}.png'.format(image_signature) }}" alt="Audio Profle">
+                <img src="{{ url_for('static', filename='audio_profile_{}.png'.format(image_signature)) }}" alt="Audio Profle">
             </div>
 {% endblock %}
